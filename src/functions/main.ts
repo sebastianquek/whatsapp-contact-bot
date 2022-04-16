@@ -1,23 +1,29 @@
 import type { Handler } from "@netlify/functions";
 import type { Update } from "telegraf/typings/core/types/typegram";
 
-import { handleStart } from "../handlers/start";
 import { setupBot } from "../utils/setup";
 
 const bot = setupBot();
 
-bot.start(handleStart);
-bot.on("text", async (ctx) => {
+bot.start((ctx) => {
+  return ctx.reply(
+    `👋 Hello ${
+      ctx.from?.first_name ?? "there"
+    }, enter a phone number you'd like to start a WhatsApp chat with.`
+  );
+});
+
+bot.on("text", (ctx) => {
   const text = ctx.message.text;
   if (text.trim().match(/[0-9+]+/)) {
     const phoneNumber = text.trim();
     const shortlink = `https://wa.me/${phoneNumber}`;
     const message = `[Click to message ${phoneNumber}](${shortlink})`;
-    await ctx.replyWithMarkdownV2(message, {
+    return ctx.replyWithMarkdownV2(message, {
       disable_web_page_preview: true,
     });
   } else {
-    await ctx.reply("Only numbers and '+' are allowed");
+    return ctx.reply("Only numbers and '+' are allowed");
   }
 });
 
