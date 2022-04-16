@@ -1,5 +1,2 @@
 [functions]
   directory = "src/functions"
-
-[template.environment]
-  TELEGRAM_BOT_TOKEN = "Telegram bot token here"
