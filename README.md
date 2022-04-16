@@ -1,9 +1,9 @@
 # WhatsApp Contact Bot
 
-Simple Telegram bot that start a WhatsApp chat with people not in your contacts.
+Simple Telegram bot that allows you to start a WhatsApp chat with people not in your contacts.
 Responds with a link that can be opened in WhatsApp.
 
-You can find a deployed version here http://t.me/WhatsAppContactBot
+You can find a deployed bot here http://t.me/WhatsAppContactBot
 
 ## Why?
 
