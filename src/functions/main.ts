@@ -23,7 +23,7 @@ bot.on("text", (ctx) => {
       disable_web_page_preview: true,
     });
   } else {
-    return ctx.reply("Only numbers and '+' are allowed");
+    return ctx.reply("Please provide a valid number");
   }
 });
 
