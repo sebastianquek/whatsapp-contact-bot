@@ -1,6 +1,8 @@
 import type { Handler } from "@netlify/functions";
 import type { Update } from "telegraf/typings/core/types/typegram";
 
+import { generateMessage } from "../utils/generateMessage";
+import { parseMobileNumber } from "../utils/parseMobileNumber";
 import { setupBot } from "../utils/setup";
 
 const bot = setupBot();
@@ -15,11 +17,9 @@ bot.start((ctx) => {
 
 bot.on("text", (ctx) => {
   const text = ctx.message.text;
-  if (text.trim().match(/[0-9+]+/)) {
-    const phoneNumber = text.trim();
-    const shortlink = `https://wa.me/${phoneNumber}`;
-    const message = `[Click to message ${phoneNumber}](${shortlink})`;
-    return ctx.replyWithMarkdownV2(message, {
+  const number = parseMobileNumber(text);
+  if (number !== undefined) {
+    return ctx.replyWithMarkdownV2(generateMessage(number), {
       disable_web_page_preview: true,
     });
   } else {
