@@ -7,7 +7,17 @@ import { setupBot } from "../utils/setup";
 const bot = setupBot();
 
 bot.start(handleStart);
-bot.on("text", (ctx) => ctx.reply(ctx.message.text));
+bot.on("text", async (ctx) => {
+  const text = ctx.message.text;
+  if (text.trim().match(/[0-9+]+/)) {
+    const phoneNumber = text.trim();
+    const shortlink = `whatsapp://send/?phone=${phoneNumber}&text&app_absent=0`;
+    const message = `[Click to message ${phoneNumber}](${shortlink})`;
+    await ctx.replyWithMarkdownV2(message);
+  } else {
+    await ctx.reply("Only numbers and '+' are allowed");
+  }
+});
 
 const handler: Handler = async (event) => {
   try {
