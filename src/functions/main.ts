@@ -11,9 +11,11 @@ bot.on("text", async (ctx) => {
   const text = ctx.message.text;
   if (text.trim().match(/[0-9+]+/)) {
     const phoneNumber = text.trim();
-    const shortlink = `whatsapp://send/?phone=${phoneNumber}&text&app_absent=0`;
+    const shortlink = `https://wa.me/${phoneNumber}`;
     const message = `[Click to message ${phoneNumber}](${shortlink})`;
-    await ctx.replyWithMarkdownV2(message);
+    await ctx.replyWithMarkdownV2(message, {
+      disable_web_page_preview: true,
+    });
   } else {
     await ctx.reply("Only numbers and '+' are allowed");
   }
