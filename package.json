@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Telegram bot to create WhatsApp chat messages with people not in your contacts",
   "scripts": {
-    "webhook-setup": "env-cmd -x curl --request POST --url https://api.telegram.org/bot\\$TELEGRAM_BOT_TOKEN/setWebhook --header 'content-type: application/json' --data '{\"url\": \"$NETLIFY_URL\"}'",
+    "webhook-setup": "npx -y ts-node scripts/webhook-setup.ts",
+    "test": "jest",
     "typecheck": "tsc --noEmit"
   },
   "author": "Sebastian Quek",
@@ -15,6 +16,7 @@
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.19.0",
     "@typescript-eslint/parser": "^5.19.0",
+    "axios": "^0.26.1",
     "babel-jest": "^27.5.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
