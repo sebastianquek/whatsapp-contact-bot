@@ -15,6 +15,9 @@ bot.on("text", async (ctx) => {
     const message = `[Click to message ${phoneNumber}](${shortlink})`;
     await ctx.replyWithMarkdownV2(message, {
       disable_web_page_preview: true,
+      reply_markup: {
+        keyboard: [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["0"]],
+      },
     });
   } else {
     await ctx.reply("Only numbers and '+' are allowed");
