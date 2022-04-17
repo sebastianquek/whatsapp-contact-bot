@@ -1,7 +1,5 @@
-import { config } from "dotenv";
+import "dotenv/config";
 import { Telegraf } from "telegraf";
-
-config();
 
 export const setupBot = () => {
   const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN as string);
